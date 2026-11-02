@@ -1,0 +1,1 @@
+ALTER TABLE public.generated_campaigns ADD COLUMN IF NOT EXISTS ad_variants jsonb NOT NULL DEFAULT '[]'::jsonb;
