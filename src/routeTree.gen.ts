@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AgentsRouteImport } from './routes/agents'
 import { Route as AllocatorRouteImport } from './routes/allocator'
 import { Route as AskRouteImport } from './routes/ask'
@@ -27,6 +28,7 @@ import { Route as OverlapRouteImport } from './routes/overlap'
 import { Route as PlatformsRouteImport } from './routes/platforms'
 import { Route as PlaybookRouteImport } from './routes/playbook'
 import { Route as SourcesRouteImport } from './routes/sources'
+import { Route as StartRouteImport } from './routes/start'
 import { Route as StoryRouteImport } from './routes/story'
 import { Route as UnitEconomicsRouteImport } from './routes/unit-economics'
 import { Route as UniverseRouteImport } from './routes/universe'
@@ -38,6 +40,11 @@ import { Route as ApiPublicGoogleAdsCallbackRouteImport } from './routes/api/pub
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AgentsRoute = AgentsRouteImport.update({
@@ -125,6 +132,11 @@ const SourcesRoute = SourcesRouteImport.update({
   path: '/sources',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StartRoute = StartRouteImport.update({
+  id: '/start',
+  path: '/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StoryRoute = StoryRouteImport.update({
   id: '/story',
   path: '/story',
@@ -164,6 +176,7 @@ const ApiPublicGoogleAdsCallbackRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/agents': typeof AgentsRoute
   '/allocator': typeof AllocatorRoute
   '/ask': typeof AskRoute
@@ -181,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/platforms': typeof PlatformsRoute
   '/playbook': typeof PlaybookRoute
   '/sources': typeof SourcesRoute
+  '/start': typeof StartRoute
   '/story': typeof StoryRoute
   '/unit-economics': typeof UnitEconomicsRoute
   '/universe': typeof UniverseRoute
@@ -191,6 +205,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/agents': typeof AgentsRoute
   '/allocator': typeof AllocatorRoute
   '/ask': typeof AskRoute
@@ -208,6 +223,7 @@ export interface FileRoutesByTo {
   '/platforms': typeof PlatformsRoute
   '/playbook': typeof PlaybookRoute
   '/sources': typeof SourcesRoute
+  '/start': typeof StartRoute
   '/story': typeof StoryRoute
   '/unit-economics': typeof UnitEconomicsRoute
   '/universe': typeof UniverseRoute
@@ -219,6 +235,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/agents': typeof AgentsRoute
   '/allocator': typeof AllocatorRoute
   '/ask': typeof AskRoute
@@ -236,6 +253,7 @@ export interface FileRoutesById {
   '/platforms': typeof PlatformsRoute
   '/playbook': typeof PlaybookRoute
   '/sources': typeof SourcesRoute
+  '/start': typeof StartRoute
   '/story': typeof StoryRoute
   '/unit-economics': typeof UnitEconomicsRoute
   '/universe': typeof UniverseRoute
@@ -248,6 +266,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/agents'
     | '/allocator'
     | '/ask'
@@ -265,6 +284,7 @@ export interface FileRouteTypes {
     | '/platforms'
     | '/playbook'
     | '/sources'
+    | '/start'
     | '/story'
     | '/unit-economics'
     | '/universe'
@@ -275,6 +295,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/agents'
     | '/allocator'
     | '/ask'
@@ -292,6 +313,7 @@ export interface FileRouteTypes {
     | '/platforms'
     | '/playbook'
     | '/sources'
+    | '/start'
     | '/story'
     | '/unit-economics'
     | '/universe'
@@ -302,6 +324,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/agents'
     | '/allocator'
     | '/ask'
@@ -319,6 +342,7 @@ export interface FileRouteTypes {
     | '/platforms'
     | '/playbook'
     | '/sources'
+    | '/start'
     | '/story'
     | '/unit-economics'
     | '/universe'
@@ -330,6 +354,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   AgentsRoute: typeof AgentsRoute
   AllocatorRoute: typeof AllocatorRoute
   AskRoute: typeof AskRoute
@@ -347,6 +372,7 @@ export interface RootRouteChildren {
   PlatformsRoute: typeof PlatformsRoute
   PlaybookRoute: typeof PlaybookRoute
   SourcesRoute: typeof SourcesRoute
+  StartRoute: typeof StartRoute
   StoryRoute: typeof StoryRoute
   UnitEconomicsRoute: typeof UnitEconomicsRoute
   UniverseRoute: typeof UniverseRoute
@@ -363,6 +389,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/agents': {
@@ -484,6 +517,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/start': {
+      id: '/start'
+      path: '/start'
+      fullPath: '/start'
+      preLoaderRoute: typeof StartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/story': {
       id: '/story'
       path: '/story'
@@ -538,6 +578,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   AgentsRoute: AgentsRoute,
   AllocatorRoute: AllocatorRoute,
   AskRoute: AskRoute,
@@ -555,6 +596,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlatformsRoute: PlatformsRoute,
   PlaybookRoute: PlaybookRoute,
   SourcesRoute: SourcesRoute,
+  StartRoute: StartRoute,
   StoryRoute: StoryRoute,
   UnitEconomicsRoute: UnitEconomicsRoute,
   UniverseRoute: UniverseRoute,

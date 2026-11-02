@@ -12,13 +12,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/platforms")({
   head: () => ({
     meta: [
-      { title: "Where They Live — Growth Dashboard" },
+      { title: "Where They Live — GrowthHub" },
       {
         name: "description",
         content:
           "Persona by platform affinity, audience sizes and co-brand partner routes for reaching India's cardholders.",
       },
-      { property: "og:title", content: "Where They Live — Growth Dashboard" },
+      { property: "og:title", content: "Where They Live — GrowthHub" },
       {
         property: "og:description",
         content: "Which apps and places these cardholders use, so we can reach them there.",

@@ -13,13 +13,13 @@ import { InorganicPlaybook } from "@/components/dashboard/InorganicPlaybook";
 export const Route = createFileRoute("/playbook")({
   head: () => ({
     meta: [
-      { title: "Growth Playbook — Growth Dashboard" },
+      { title: "Growth Playbook — GrowthHub" },
       {
         name: "description",
         content:
           "Named plays with reach, conversion and expected actives, plus an effort and impact matrix that ranks them.",
       },
-      { property: "og:title", content: "Growth Playbook — Growth Dashboard" },
+      { property: "og:title", content: "Growth Playbook — GrowthHub" },
       {
         property: "og:description",
         content: "Turns the market map into a plan each team can own.",

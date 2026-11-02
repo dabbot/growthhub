@@ -18,13 +18,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Growth Dashboard" },
+      { title: "GrowthHub" },
       {
         name: "description",
         content:
           "Size the market, find the winnable audience, and turn it into campaigns you can run.",
       },
-      { property: "og:title", content: "Growth Dashboard" },
+      { property: "og:title", content: "GrowthHub" },
       {
         property: "og:description",
         content:
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Growth Dashboard" },
+      { name: "twitter:title", content: "GrowthHub" },
       {
         name: "twitter:description",
         content:

@@ -19,13 +19,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/opportunity")({
   head: () => ({
     meta: [
-      { title: "The 10M Opportunity — Growth Dashboard" },
+      { title: "The 10M Opportunity — GrowthHub" },
       {
         name: "description",
         content:
           "Compare Acme's active, lapsed and not-yet-qualified members by card ownership, credit score and engagement to see where the next 10M members come from.",
       },
-      { property: "og:title", content: "The 10M Opportunity — Growth Dashboard" },
+      { property: "og:title", content: "The 10M Opportunity — GrowthHub" },
       {
         property: "og:description",
         content: "Three member groups, three lenses, one question: who is actually winnable?",

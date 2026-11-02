@@ -1,4 +1,5 @@
 import { template as signInAlert } from './sign-in-alert'
+import { requestTemplate, statusTemplate } from './company-emails'
 import type { ComponentType } from 'react'
 
 export interface TemplateEntry {
@@ -20,6 +21,8 @@ export interface TemplateEntry {
  */
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'sign-in-alert': signInAlert,
+  'company-request': requestTemplate,
+  'company-status': statusTemplate,
   // Add templates here as they are created, e.g.:
   // 'welcome': welcomeTemplate,
 }

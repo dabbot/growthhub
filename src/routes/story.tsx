@@ -11,13 +11,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/story")({
   head: () => ({
     meta: [
-      { title: "The Scrollytelling Cut — Growth Dashboard" },
+      { title: "The Scrollytelling Cut — GrowthHub" },
       {
         name: "description",
         content:
           "Scroll through India's 58M credit cardholders one dot at a time and watch the real Acme headroom emerge.",
       },
-      { property: "og:title", content: "The Scrollytelling Cut — Growth Dashboard" },
+      { property: "og:title", content: "The Scrollytelling Cut — GrowthHub" },
       {
         property: "og:description",
         content: "Every dot is 250,000 people. Watch them sort themselves into the prize.",

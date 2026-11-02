@@ -9,13 +9,13 @@ import { DataBadge } from "@/components/dashboard/DataBadge";
 export const Route = createFileRoute("/sources")({
   head: () => ({
     meta: [
-      { title: "Sources & Method — Growth Dashboard" },
+      { title: "Sources & Method — GrowthHub" },
       {
         name: "description",
         content:
-          "Every source, refresh date, assumption and known weakness behind the Growth Dashboard.",
+          "Every source, refresh date, assumption and known weakness behind the GrowthHub.",
       },
-      { property: "og:title", content: "Sources & Method — Growth Dashboard" },
+      { property: "og:title", content: "Sources & Method — GrowthHub" },
       {
         property: "og:description",
         content: "Where each number comes from, and how sure we are.",

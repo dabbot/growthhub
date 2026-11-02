@@ -20,9 +20,9 @@ import {
 export const Route = createFileRoute("/connectors")({
   head: () => ({
     meta: [
-      { title: "Data Connectors · Growth Dashboard" },
+      { title: "Data Connectors · GrowthHub" },
       { name: "description", content: "Connect ad, analytics, SEO and product tools to feed the growth dashboard richer data." },
-      { property: "og:title", content: "Data Connectors · Growth Dashboard" },
+      { property: "og:title", content: "Data Connectors · GrowthHub" },
       { property: "og:description", content: "Connect ad, analytics, SEO and product tools to feed the growth dashboard richer data." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

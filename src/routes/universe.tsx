@@ -14,13 +14,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/universe")({
   head: () => ({
     meta: [
-      { title: "Cardholder Universe — Growth Dashboard" },
+      { title: "Cardholder Universe — GrowthHub" },
       {
         name: "description",
         content:
           "Seven acting-sized personas inside India's 52M credit cardholders, with Acme penetration for each.",
       },
-      { property: "og:title", content: "Cardholder Universe — Growth Dashboard" },
+      { property: "og:title", content: "Cardholder Universe — GrowthHub" },
       {
         property: "og:description",
         content: "Who these 52M people are, in groups a team can act on.",

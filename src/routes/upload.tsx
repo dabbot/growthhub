@@ -11,13 +11,13 @@ import { PageHeader } from "@/components/dashboard/PageHeader";
 export const Route = createFileRoute("/upload")({
   head: () => ({
     meta: [
-      { title: "Upload actual data — Growth Dashboard" },
+      { title: "Upload actual data — GrowthHub" },
       {
         name: "description",
         content:
           "Replace the modelled Acme figures with real ones: funnel, monthly actives and penetration by bank.",
       },
-      { property: "og:title", content: "Upload actual data — Growth Dashboard" },
+      { property: "og:title", content: "Upload actual data — GrowthHub" },
       {
         property: "og:description",
         content: "Put Acme's own numbers into the dashboard so every screen recalculates on facts.",

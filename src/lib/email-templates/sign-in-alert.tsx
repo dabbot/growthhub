@@ -23,12 +23,12 @@ const Row = ({ label, value }: { label: string; value?: string | undefined }) =>
 const Email = ({ email, time, firstTime, firstSeen, location, ip, device }: Props) => (
   <Html lang="en" dir="ltr">
     <Head />
-    <Preview>{`${email ?? 'Someone'} signed in to Growth Dashboard`}</Preview>
+    <Preview>{`${email ?? 'Someone'} signed in to GrowthHub`}</Preview>
     <Body style={main}>
       <Container style={container}>
         <Heading style={h1}>{firstTime ? 'New person signed in' : 'Someone signed in'}</Heading>
         <Text style={lead}>
-          <strong>{email ?? 'Unknown'}</strong> just signed in to Growth Dashboard.
+          <strong>{email ?? 'Unknown'}</strong> just signed in to GrowthHub.
         </Text>
         <Section style={card}>
           <Row label="Email" value={email} />
@@ -45,7 +45,7 @@ const Email = ({ email, time, firstTime, firstSeen, location, ip, device }: Prop
 
 export const template = {
   component: Email,
-  subject: (d: Record<string, any>) => `Sign-in: ${d['email'] ?? 'someone'} — Growth Dashboard`,
+  subject: (d: Record<string, any>) => `Sign-in: ${d['email'] ?? 'someone'} — GrowthHub`,
   displayName: 'Sign-in alert',
   previewData: {
     email: 'jane@example.com',

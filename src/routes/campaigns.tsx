@@ -30,13 +30,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/campaigns")({
   head: () => ({
     meta: [
-      { title: "Run Campaigns — Growth Dashboard" },
+      { title: "Run Campaigns — GrowthHub" },
       {
         name: "description",
         content:
           "Turn a persona and a play into a ready Google Search and Meta campaign, then push it live in one click.",
       },
-      { property: "og:title", content: "Run Campaigns — Growth Dashboard" },
+      { property: "og:title", content: "Run Campaigns — GrowthHub" },
       {
         property: "og:description",
         content: "Auto-written Google and Meta campaigns, created paused in your own ad accounts.",

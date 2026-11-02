@@ -14,13 +14,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/ask")({
   head: () => ({
     meta: [
-      { title: "Ask the Map — Growth Dashboard" },
+      { title: "Ask the Map — GrowthHub" },
       {
         name: "description",
         content:
           "Describe a growth hypothesis and get a prioritised opportunity analysis built only from this dashboard's own numbers.",
       },
-      { property: "og:title", content: "Ask the Map — Growth Dashboard" },
+      { property: "og:title", content: "Ask the Map — GrowthHub" },
       {
         property: "og:description",
         content:

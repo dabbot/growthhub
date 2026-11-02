@@ -10,13 +10,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/marketing")({
   head: () => ({
     meta: [
-      { title: "Marketing Audit — Growth Dashboard" },
+      { title: "Marketing Audit — GrowthHub" },
       {
         name: "description",
         content:
           "A craft audit of Acme's live Meta and Google advertising, plus a channel-by-channel plan of what to fix.",
       },
-      { property: "og:title", content: "Marketing Audit — Growth Dashboard" },
+      { property: "og:title", content: "Marketing Audit — GrowthHub" },
       {
         property: "og:description",
         content: "What Acme is running right now, what is wrong with it, and what to change.",

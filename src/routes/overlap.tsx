@@ -13,13 +13,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/overlap")({
   head: () => ({
     meta: [
-      { title: "Acme Overlap — Growth Dashboard" },
+      { title: "Acme Overlap — GrowthHub" },
       {
         name: "description",
         content:
           "Where Acme is strong and whose app the cardholder is living in instead: bank app, UPI super-app or Acme.",
       },
-      { property: "og:title", content: "Acme Overlap — Growth Dashboard" },
+      { property: "og:title", content: "Acme Overlap — GrowthHub" },
       {
         property: "og:description",
         content: "Bank app, UPI super-app or Acme — where card bills actually get paid.",

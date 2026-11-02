@@ -4,13 +4,15 @@ import { supabase } from "@/integrations/supabase/client";
 import type { ReactNode } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { logPageView } from "@/lib/page-views.functions";
-import { SlidersHorizontal, Menu, X, Plug } from "lucide-react";
+import { SlidersHorizontal, Menu, X, Plug, ChevronDown, Plus } from "lucide-react";
 import { AssumptionsPanel } from "./AssumptionsPanel";
 import { ThemeToggle } from "./ThemeToggle";
 import { useAssumptions } from "@/lib/assumptions";
 import { useSelection } from "@/lib/selection";
 import { useCompany } from "@/lib/company";
 import { BRAND } from "@/lib/brand";
+import { SECTIONS } from "@/lib/sections";
+import { GenericDashboard } from "./GenericDashboard";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -39,17 +41,22 @@ const NAV = [
   { to: "/connectors", n: "23", label: "Data Connectors" },
 ] as const;
 
+/** Pages that work the same for every company, outside the generated sections. */
+const OWN_PAGES = ["/start", "/admin", "/connectors"];
+
 export function AppShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-  const { company } = useCompany();
+  const { current, companies, isAdmin, selectCompany } = useCompany();
+  const demo = current?.demo ?? true;
+  const navigate = useNavigate();
   const { changedCount } = useAssumptions();
   const { issuer, persona, clear } = useSelection();
   const [hintStep, setHintStep] = useState(-1);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   useEffect(() => {
-    void logPageView({ data: { path: pathname, company } }).catch(() => {});
-  }, [pathname, company]);
+    void logPageView({ data: { path: pathname, company: current?.slug ?? BRAND.key } }).catch(() => {});
+  }, [pathname, current?.slug]);
   useEffect(() => {
     try {
       if (!window.localStorage.getItem("growth-dashboard-hints-seen")) setHintStep(0);
@@ -77,7 +84,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       >
         <div className="flex items-center justify-between px-5 py-6">
           <div>
-            <p className="font-display text-sm font-semibold tracking-tight">Growth Dashboard</p>
+            <p className="font-display text-sm font-semibold tracking-tight">GrowthHub</p>
             <p className="mt-1 text-[11px] leading-snug text-muted-foreground">
               Size the market, find the winnable audience, and turn it into campaigns you can run
             </p>
@@ -92,14 +99,49 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
 
         <div className="px-5 pb-5">
-          <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Company</p>
-          <p className="mt-1.5 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground">
-            {BRAND.name} · {BRAND.sector}
-          </p>
+          <label htmlFor="company-select" className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+            Company
+          </label>
+          <div className="relative mt-1.5">
+            <select
+              id="company-select"
+              value={current?.id ?? ""}
+              onChange={(e) => {
+                selectCompany(e.target.value);
+                void navigate({ to: "/" });
+              }}
+              className="w-full cursor-pointer appearance-none rounded-lg border border-border bg-card px-3 py-2 pr-8 text-sm font-medium text-foreground"
+            >
+              {companies.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                  {c.sector ? ` · ${c.sector}` : ""}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          </div>
+          <Link
+            to="/start"
+            onClick={() => setNavOpen(false)}
+            className={cn(
+              "mt-2 flex items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium",
+              companies.every((c) => c.demo)
+                ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                : "border border-dashed border-border text-muted-foreground hover:text-foreground",
+            )}
+          >
+            <Plus className="size-3.5" /> Add your company
+          </Link>
         </div>
 
         <nav className="flex-1 space-y-1 px-3">
-          {NAV.map((item) => (
+          {NAV.filter((item) => {
+            if (demo) return true;
+            const key = SECTIONS.find((d) => d.path === item.to)?.key;
+            const m = current?.section_map.find((x) => x.key === key);
+            return !m || m.include;
+          }).map((item) => (
             <Link
               key={item.to}
               to={item.to}
@@ -112,9 +154,23 @@ export function AppShell({ children }: { children: ReactNode }) {
               className={cn(item.to === "/connectors" && "lg:hidden", "flex items-center gap-3 rounded-lg border-l-2 px-3 py-2 text-sm transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground")}
             >
               <span className="tabular text-[10px] text-primary">{item.n}</span>
-              {item.label}
+              {demo
+                ? item.label
+                : (current?.section_map.find((x) => x.key === SECTIONS.find((d) => d.path === item.to)?.key)?.label ?? item.label)}
             </Link>
           ))}
+          {isAdmin ? (
+            <Link
+              to="/admin"
+              onClick={() => setNavOpen(false)}
+              activeProps={{ className: "bg-sidebar-accent text-sidebar-accent-foreground border-primary/50" }}
+              inactiveProps={{ className: "border-transparent text-muted-foreground" }}
+              className="mt-3 flex items-center gap-3 rounded-lg border-l-2 px-3 py-2 text-sm hover:bg-sidebar-accent"
+            >
+              <span className="tabular text-[10px] text-primary">★</span>
+              Admin
+            </Link>
+          ) : null}
         </nav>
 
         <div className="space-y-2 px-3 pb-5">
@@ -190,7 +246,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           <ThemeToggle className="lg:hidden" />
           <SignOutRow />
         </div>
-        <main className="min-w-0 flex-1 px-4 py-6 sm:px-6 lg:px-10 lg:py-8">{children}</main>
+        <main className="min-w-0 flex-1 px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
+          {demo || OWN_PAGES.includes(pathname) ? children : <GenericDashboard />}
+        </main>
       </div>
 
       {open ? <AssumptionsPanel onClose={() => setOpen(false)} /> : null}

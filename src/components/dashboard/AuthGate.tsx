@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { CreditCard, Loader2 } from "lucide-react";
+import { Loader2, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { notifySignIn } from "@/lib/sign-in-alert.functions";
 import { ACCESS_MESSAGE, isAllowedEmail } from "@/lib/allowed-domains";
@@ -155,20 +155,20 @@ function SignIn({ refusedEmail, onRetry }: { refusedEmail: string | null; onRetr
       </div>
       <div className="relative w-full max-w-sm rounded-2xl border border-border bg-card/90 p-7 shadow-2xl backdrop-blur">
         <div className="flex items-center gap-2 text-primary">
-          <CreditCard className="size-5" />
+          <Sparkles className="size-5" />
           <p className="font-display text-sm font-semibold tracking-tight text-foreground">
-            Growth Dashboard
+            GrowthHub
           </p>
         </div>
         <h1 className="mt-4 font-display text-xl font-semibold leading-tight tracking-tight text-foreground">
-          One growth brain for your whole team.
+          Your growth command center.
         </h1>
         <p className="mt-2 text-sm leading-snug text-muted-foreground">
-          Break the silos between growth teams: every channel, campaign and metric in one place,
-          with AI growth agents working 24/7 to turn it into clear next actions.
+          Add your website or app and get your market size, competitors, audits, growth playbook and
+          unit economics in one place, with AI growth agents turning it into next actions.
         </p>
         <p className="mt-4 border-t border-border pt-4 text-xs leading-snug text-muted-foreground">
-          Sign in with your work email. We'll send you a sign-in link and an 8-digit code.
+          Sign in with your email. We'll send you a sign-in link and an 8-digit code. Use your work email to share companies with teammates.
         </p>
 
         {step === "email" ? (

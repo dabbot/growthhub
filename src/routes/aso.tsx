@@ -19,13 +19,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/aso")({
   head: () => ({
     meta: [
-      { title: "ASO & SEO Audit — Growth Dashboard" },
+      { title: "ASO & SEO Audit — GrowthHub" },
       {
         name: "description",
         content:
           "How Acme's app listing and website search presence stack up, what rival app users complain about, and the features that would win them over.",
       },
-      { property: "og:title", content: "ASO & SEO Audit — Growth Dashboard" },
+      { property: "og:title", content: "ASO & SEO Audit — GrowthHub" },
       {
         property: "og:description",
         content: "Store reviews and search data turned into a switcher strategy.",

@@ -10,13 +10,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/competitors")({
   head: () => ({
     meta: [
-      { title: "Competitors — Growth Dashboard" },
+      { title: "Competitors — GrowthHub" },
       {
         name: "description",
         content:
           "Acme against bank apps, payment super-apps and a challenger on installs, monthly actives, entry gate and share of card bill payments.",
       },
-      { property: "og:title", content: "Competitors — Growth Dashboard" },
+      { property: "og:title", content: "Competitors — GrowthHub" },
       {
         property: "og:description",
         content: "Who else is competing for the cardholder, and where the switchable users sit.",

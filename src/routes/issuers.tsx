@@ -29,13 +29,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/issuers")({
   head: () => ({
     meta: [
-      { title: "Issuer Landscape — Growth Dashboard" },
+      { title: "Issuer Landscape — GrowthHub" },
       {
         name: "description",
         content:
           "Bank-by-bank view of India's credit card market: cards, spend per card, growth and Acme penetration.",
       },
-      { property: "og:title", content: "Issuer Landscape — Growth Dashboard" },
+      { property: "og:title", content: "Issuer Landscape — GrowthHub" },
       {
         property: "og:description",
         content: "Which banks' customers are the most valuable and the fastest growing.",

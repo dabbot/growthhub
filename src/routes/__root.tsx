@@ -1,4 +1,6 @@
-import { QueryClient, QueryClientProvider, useSuspenseQuery } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { getMyAccess } from "../lib/onboarding.functions";
 import { dashboardQueryOptions } from "../lib/dashboard-query";
 import { AssumptionsProvider } from "../lib/assumptions";
 import { SelectionProvider } from "../lib/selection";
@@ -80,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "author", content: "Growth Dashboard" },
+      { name: "author", content: "GrowthHub" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -152,10 +154,29 @@ function Shell() {
 }
 
 function DataShell() {
+  const fetchAccess = useServerFn(getMyAccess);
+  const access = useQuery({ queryKey: ["access"], queryFn: () => fetchAccess(), staleTime: 30_000 });
   const { data } = useSuspenseQuery(dashboardQueryOptions);
 
+  if (access.error) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background px-4">
+        <p className="max-w-md text-center text-sm text-muted-foreground">
+          {access.error instanceof Error ? access.error.message : "Couldn't load your companies."} Refresh to try again.
+        </p>
+      </div>
+    );
+  }
+  if (!access.data) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <p className="text-sm text-muted-foreground">Loading your companies…</p>
+      </div>
+    );
+  }
+
   return (
-    <CompanyProvider>
+    <CompanyProvider access={access.data}>
       <AssumptionsProvider list={data.assumptions}>
         <SelectionProvider>
           <AppShell>
